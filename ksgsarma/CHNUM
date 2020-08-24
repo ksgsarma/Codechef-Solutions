@@ -1,0 +1,37 @@
+#include <stdio.h>
+void func();
+int main()
+{
+  int t;
+  scanf("%d", &t);
+  while(t > 0)
+  {
+    func();
+    t--;
+  }
+  return 0;
+}
+void func()
+{
+  long long int n, a, i, countn = 0, countp = 0;
+  scanf("%lld", &n);
+  for(i = 0; i < n; i++)
+  {
+    scanf("%lld", &a);
+    if(a > 0)
+      countp++;
+    else
+      countn++;
+  }
+  if(countn == 0)
+    countn = countp;
+  if(countp == 0)
+    countp = countn;
+  if(countp > countn)
+  {
+    i = countn;
+    countn = countp;
+    countp = i;
+  }
+  printf("%lld %lld\n", countn, countp);
+}

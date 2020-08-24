@@ -1,0 +1,102 @@
+#include <stdio.h>
+void func();
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while(t > 0)
+	{
+		func();
+		t--;
+	}
+	return 0;
+}
+void func()
+{
+	int n, k , i, a[100000], flag, m;
+	scanf("%d", &n);
+	scanf("%d", &k);
+	for(i = 0; i < n; i++)
+	{
+		scanf("%d", &a[i]);
+	}
+	flag = 1;
+	for(i = 1; i < n; i++)
+	{
+		if(a[i - 1] == a[i])
+		{
+			if(a[i] != -1)
+			{
+				goto l;	
+			}
+		}
+	}
+	if(k == 2)
+	{
+		for(i = 0; i < n; i++)
+		{
+			m = 2;
+			if(a[i] == -1)
+			{
+				o:
+				if(i == 0 && a[i + 1] != m)
+					a[i] = m;
+				else if(i == n - 1 && a[i - 1] != m)
+					a[i] = m;
+				else if(a[i - 1] != m && a[i + 1] != m)
+					a[i] = m;
+				else
+				{
+					m--;
+					if(m == 0)
+					{
+						flag = 0;
+						break;
+					}
+					goto o;
+				}
+			}
+		}
+		goto f;
+	}
+	if(flag == 1)
+	{
+		for(i = 0; i < n; i++)
+		{
+			m = 1;
+			if(a[i] == -1)
+			{
+				x:
+				if(i == 0 && a[i + 1] != m)
+					a[i] = m;
+				else if(i == n - 1 && a[i - 1] != m)
+					a[i] = m;
+				else if(a[i - 1] != m && a[i + 1] != m)
+					a[i] = m;
+				else
+				{
+					m++;
+					if(m > k)
+					{
+						flag = 0;
+						break;
+					}
+					goto x;
+				}
+			}
+		}
+	}
+	f:
+	if(flag == 1)
+	{
+		printf("YES\n");
+		for(i = 0; i < n; i++)
+			printf("%d ", a[i]);
+		printf("\n");
+	}
+	else 
+	{
+		l:
+		printf("NO\n");
+	}
+}

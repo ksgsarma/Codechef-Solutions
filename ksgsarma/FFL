@@ -1,0 +1,21 @@
+t = int(input())
+while t > 0:
+	n , cost = map(int, input().split())
+	a = list(map(int, input().split()))
+	b = list(map(int, input().split()))
+
+	la = 1001
+	al = 1001
+	for i in range(n):
+		if b[i] == 0:
+			if a[i] < la:
+				la = a[i]
+		else:
+			if a[i] < al:
+				al = a[i]
+	lai = al + la
+	if lai + cost <= 100:
+		print("yes")
+	else:
+		print("no")
+	t -= 1

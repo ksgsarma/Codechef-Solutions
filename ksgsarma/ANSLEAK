@@ -1,0 +1,30 @@
+t = int(input())
+while t > 0:
+    n, m, k = map(int, input().split())
+    l = []
+    lala = []
+    while n > 0:
+        x = list(map(int, input().split()))
+        lala.append(x)
+        a = [0] * 10
+        for i in x:
+        	a[i] += 1
+        c = a.index(max(a))
+        #print(c, end = " ")
+        l.append(c)
+        n -= 1
+    x = len(lala[0])
+    for i in range(x):
+    	flag = 0
+    	for j in range(len(lala)):
+    		if lala[j][i] == l[j]:
+    			flag += 1
+    	if flag == 0:
+    		sad = []
+    		for j in range(len(lala)):
+    			sad.append(lala[i][j])
+    		mama = max(sad)
+    		l[i] = mama
+    for i in l:
+    	print(i, end =" ")
+    t -= 1

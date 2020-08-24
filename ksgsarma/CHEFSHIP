@@ -1,0 +1,22 @@
+t = int(input())
+while t > 0:
+	s = input()
+	a = ""
+	b = ""
+	j = set()
+	for i in range(0, len(s), 2):
+		x = s[:i]
+		y = s[i:]
+		x1 = len(x) // 2
+		y1 = len(y) // 2
+		if x[x1:] == x[:x1]:
+			if y[y1:] == y[:y1]:
+				a = x[x1:]
+				b = y[y1:]
+				j.add(a)
+	x = len(j)
+	p = ""
+	if p in j:
+		x -= 1
+	print(x)
+	t -= 1 

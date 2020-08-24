@@ -1,0 +1,33 @@
+#include <stdio.h>
+void func();
+int main() {
+    int t;
+    scanf("%d", &t);
+    while(t > 0)
+    {
+        func();
+        t--;
+    }
+	return 0;
+}
+void func()
+{
+    int a, b, c, count = 0;
+    scanf("%d %d", &a, &b);
+    if(a > b)
+        c = a - b;
+    else
+        c = b - a;
+    for(int i = 1; i <= sqrt(c); i++)
+    {
+        if(c % i == 0)
+        {
+            if(c / i == i)
+                count++;
+            else
+                count = count + 2;
+        }
+    }
+        printf("%d\n", count);
+}
+

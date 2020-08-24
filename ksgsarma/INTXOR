@@ -1,0 +1,144 @@
+#include <stdio.h>
+void func();
+int main()
+ {
+  int t;
+  scanf("%d", &t);
+  while(t > 0)
+  {
+    func();
+    t--;
+  }
+  return 0;
+}
+void func()
+{
+  long long int n, i = 1, x, w, y, z, c, p, a[50001], j, temp, m;
+  scanf("%lld", &n);
+  c = n % 4;
+  p = n;
+  if(c != 0)
+    p = p - c - 4;
+  m = c + 4;
+  while(p > 0)
+  {
+    printf("1 %lld %lld %lld\n", i, i + 1, i + 2);
+    fflush(stdout);
+    scanf("%lld", &w);
+    printf("1 %lld %lld %lld\n", i + 1, i + 2, i + 3);
+    fflush(stdout);
+    scanf("%lld", &x);
+    printf("1 %lld %lld %lld\n", i, i + 1, i + 3);
+    fflush(stdout);
+    scanf("%lld", &y);
+    printf("1 %lld %lld %lld\n", i, i + 2, i + 3);
+    fflush(stdout);
+    scanf("%lld", &z);
+    temp = w ^ x;
+    x = temp ^ y;
+    y = temp ^ z;
+    w = w ^ x ^ y;
+    z = w ^ temp;
+    a[i] = w;
+    a[i + 1] = x;
+    a[i + 2] = y;
+    a[i + 3] = z;
+    i = i + 4;
+    p = p - 4;
+  }
+  if(c != 0)
+  {
+    j = i;
+    if(c != 2)
+    {
+    while(m > 2)
+    {
+    printf("1 %lld %lld %lld\n", i, i + 1, i + 2);
+    fflush(stdout);
+    scanf("%lld", &a[i]);  
+    if(i == j)
+     z = a[i];
+    i++;
+    m--;
+    }
+    printf("1 %lld %lld %lld\n", j, i, i + 1);
+    fflush(stdout);
+    scanf("%lld", &temp);
+    printf("1 %lld %lld %lld\n", j, j + 1, i + 1);
+    fflush(stdout);
+    scanf("%lld", &m);
+    }
+    if(c == 1)
+    {
+     m = a[j] ^ a[j + 1] ^ m;
+     x = a[j + 2] ^ a[j + 1] ^ m;
+     w = temp ^ m ^ x;
+     y = a[j] ^ w ^ x;
+     z = a[j + 1] ^ x ^ y;
+     a[j] = w;
+     a[j + 1] = x;
+     a[j + 2] = y;
+     a[j + 3] = z;
+     a[j + 4] = m;
+    }
+    if(c == 2)
+    {
+    printf("1 %lld %lld %lld\n", j, j + 1, j + 2);
+    fflush(stdout);
+    scanf("%lld", &w);
+    printf("1 %lld %lld %lld\n", j + 1, j + 2, j + 3);
+    fflush(stdout);
+    scanf("%lld", &x);
+    printf("1 %lld %lld %lld\n", j, j + 3, j + 4);
+    fflush(stdout);
+    scanf("%lld", &y);
+    printf("1 %lld %lld %lld\n", j, j + 5, i + 3);
+    fflush(stdout);
+    scanf("%lld", &z);
+    printf("1 %lld %lld %lld\n", j + 5, j + 4, j + 1);
+    fflush(stdout);
+    scanf("%lld", &temp);
+    printf("1 %lld %lld %lld\n", j + 5, j + 4, j + 2);
+    fflush(stdout);
+    scanf("%lld", &m);
+    c = w ^ x;
+    y = y ^ c;
+    z = z ^ c;
+    m = m ^ y ^ z;
+    temp = temp ^ z ^ y;
+    w = w ^ temp ^ m;
+    x = x ^ temp ^ m;
+    a[j] = w;
+    a[j + 1] = temp;
+    a[j + 2] = m;
+    a[j + 3] = x;
+    a[j + 4] = y;
+    a[j + 5] = z;
+    }
+    if(c == 3)
+    {
+     p = a[j + 1] ^ a[j + 2] ^ temp ^ m ^ a[j + 4];
+     z = a[j + 3] ^ a[j + 4] ^ p;
+     w = a[j] ^ a[j + 1] ^ z;
+     x = m ^ p ^ w;
+     temp = temp ^ p ^ w;
+     y = a[j] ^ w ^ x;
+     c = a[j + 2] ^ y ^ z;
+     a[j] = w;
+     a[j + 1] = x;
+     a[j + 2] = y;
+     a[j + 3] = z;
+     a[j + 4] = c;
+     a[j + 5] = temp;
+     a[j + 6] = p;
+    }
+  }
+  printf("2 ");
+  fflush(stdout);
+  for(i = 1; i <= n; i++)
+  {
+    printf("%lld ", a[i]);
+    fflush(stdout);
+  }
+  scanf("%lld", &x);
+}

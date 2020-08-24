@@ -1,0 +1,34 @@
+#include <stdio.h>
+#include<math.h>
+void func();
+long long int gcd(long long int, long long int);
+int main() 
+{
+  int a;
+  scanf("%d", &a);
+  while(a>0)
+  {
+    func();
+    a--;
+  }
+  return 0;
+}
+long long int gcd(long long int n1, long long int n2)
+{
+    if (n2 != 0)
+       return gcd(n2, n1%n2);
+    else 
+       return n1;
+}
+void func()
+{
+  long long int x,y,n;
+  scanf("%Ld",&x);
+  scanf("%Ld",&y);
+  scanf("%Ld",&n);
+  long long int p,q,r;
+  p = pow(x, n) + pow(y, n);
+  q = x - y;
+  r = gcd(p,q);
+  printf("%Ld\n", r);
+}

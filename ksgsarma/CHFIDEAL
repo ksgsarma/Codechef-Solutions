@@ -1,0 +1,12 @@
+#include <stdio.h>
+int main()
+{
+	int r;
+	printf("3\n");
+	fflush(stdout);
+	scanf("%d", &r);
+	printf("%d\n", 3 - r);
+	fflush(stdout);
+	return 0;
+}
+

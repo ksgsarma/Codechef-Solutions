@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+void func();
+
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while(t > 0)
+	{
+		func();
+		t--;
+	}
+	return 0;
+}
+void func()
+{
+	long long int n, m, x, sum = 0, i;
+	scanf("%lld %lld", &n, &m);
+	for(i = 0; i < n; i++)
+	{
+		scanf("%lld", &x);
+		sum += x % m;
+	}
+	sum = sum % m;
+	printf("%lld\n", sum);
+}

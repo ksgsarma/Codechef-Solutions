@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <string.h>
+void func();
+int main() 
+{
+  int t;
+  scanf("%d", &t);
+  while(t > 0)
+  {
+    func();
+    t--;
+  }
+  return 0;
+}
+void func()
+{
+  char a[200];
+  int n, i, flag[26], c, count = 0, p;
+  scanf("%d", &n);
+  for(i = 0; i < 26; i++)
+    flag[i] = 0;
+  scanf("%s", a);
+  p = n;
+  for(i = 0; i < strlen(a); i++)
+  {
+    c = a[i] - 97;
+    if(flag[c] == 0)
+      flag[c] = 1;
+  }
+  while(n > 1)
+  {
+    scanf("%s", a);
+    for(i = 0; i < strlen(a); i++)
+    {
+      c = a[i] - 97;
+      if(flag[c] == (p - n + 1))
+        flag[c]++;
+    }
+    n--;
+  }
+  for(i = 0; i < 26; i++)
+    if(flag[i] == p)
+      count++;
+  printf("%d\n", count);
+}

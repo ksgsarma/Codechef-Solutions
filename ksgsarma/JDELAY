@@ -1,0 +1,28 @@
+#include <stdio.h>
+void func();
+int main()
+ {
+  int t;
+  scanf("%d", &t);
+  while(t > 0)
+  {
+    func();
+    t--;
+  }
+  return 0;
+}
+void func()
+{
+  int n, s, j, count = 0;
+  scanf("%d", &n);
+  while(n > 0)
+  {
+    scanf("%d", &s);
+    scanf("%d", &j);
+    s = j - s;
+    if( s > 5)
+     count = count + 1;
+    n--; 
+  }
+  printf("%d\n", count);
+}

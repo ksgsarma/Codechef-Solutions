@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+void func();
+int main()
+{
+  int t;
+  scanf("%d", &t);
+  while(t > 0)
+  {
+    func();
+    t--;
+  }
+  return 0;
+}
+void func()
+{
+  long long int n, k, a[100000], i, j, l, sum = 0, flag = 0, p;
+  scanf("%lld %lld", &n, &k);
+  for(i = 1; i <= n; i++)
+    scanf("%lld", &a[i]);
+  for(i = 1; i <= n; i++)
+  {  
+    sum = a[i];
+    l = 2;
+    if(a[i] < k || i == n)
+    {
+      for(j = i + 1; j <= n; j++)
+        {
+          sum = sum + a[j] / l;
+          if(sum > k)
+          {
+            break;
+          }
+          l++;
+        }
+      if(sum <= k)
+      {
+        printf("%lld\n", i);
+        flag = i;
+        break;
+      }
+    }
+  }
+  if(flag == 0)
+  {
+    flag = n + 1;
+    printf("%lld\n", flag);
+  }
+}

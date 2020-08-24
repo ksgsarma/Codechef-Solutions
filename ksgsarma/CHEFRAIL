@@ -1,0 +1,40 @@
+import math
+t = int(input())
+while t > 0:
+	count = 0
+	flag = 0
+	n,m = map(int, input().split())
+	x = [int(n) for n in input().split()]
+	y = [int(m) for m in input().split()]
+	# x.sort()
+	# y.sort()
+	if 0 in x:
+		x.remove(0)
+		flag = 1
+	if 0 in y:
+		y.remove(0)
+		flag = 1
+	for i in range(0, len(x)):
+		for j in range(i + 1, len(x)):
+			l = - (x[i] * x[j])
+			if l > 0:
+				k = int(math.sqrt(l)) 
+				if k ** 2 == l:
+					if k in y:
+						count += 1
+					if -k in y:
+						count += 1
+	for i in range(0, len(y)):
+		for j in range(i + 1, len(y)):
+			l = - (y[i] * y[j])
+			if l > 0:
+				k = int(math.sqrt(l)) 
+				if k ** 2 == l:
+					if k in x:
+						count += 1
+					if -k in x:
+						count += 1
+	if flag == 1:
+		count  += len(x) * len(y)
+	print(count)
+	t = t - 1

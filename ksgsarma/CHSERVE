@@ -1,0 +1,29 @@
+#include <stdio.h>
+void func();
+int main()
+{
+    long long int t;
+    scanf("%lld", &t);
+    while(t > 0)
+    {
+        func();
+        t--;
+    }
+    return 0;
+}
+void func()
+{
+    long long int k, chef, cook, c;
+    scanf("%lld", &chef);
+    scanf("%lld", &cook);
+    scanf("%lld", &k);
+    c = chef + cook;
+    k = 2 * k;
+    c = c % k;
+    k = k / 2;
+    if( c < k)
+        printf("CHEF\n");
+    else
+        printf("COOK\n");
+}
+

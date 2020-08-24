@@ -1,0 +1,90 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+void func();
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while(t > 0)
+	{
+		func();
+		t--;
+	}
+	return 0;
+}
+void func()
+{
+	long long int n, a[10000] , p, flag, i, index = 0, rr, jj, count = 0, land = 0, j;
+	scanf("%lld %lld", &n, &p);
+	flag = 0;
+	for(i = 0; i < n; i++)
+	{
+		scanf("%lld", &a[i]);
+		if(p % a[i] != 0)
+		{
+			flag = 1;
+			index = i;
+		}
+	}
+	if(flag == 0)
+	{
+		for(i = 0; i < n; i++)
+		{
+			for(j = i + 1; j < n; j++)
+			{
+				if(a[j] % a[i] != 0)
+				{
+					rr = a[i];
+					jj = a[j];
+					count = 1;
+					break;
+				}
+			}
+		}
+		if(count == 1)
+		{
+			printf("YES");
+			count = p / jj;
+			count--;
+			long long int lol = count * jj;
+			lol = p - lol;
+			lol = lol / rr;
+			lol++;
+			//printf("%lld", lol);
+			for(i = 0; i < n; i++)
+			{
+				printf(" ");
+				if(a[i] == rr)
+				{
+					printf("%lld", lol);	
+				}
+				else if (a[i] == jj)
+				{
+					printf("%lld", count);
+				}
+				else
+					printf("%lld", land);
+			}	
+		}
+		else
+			printf("NO");
+	}
+	else
+	{
+		printf("YES");
+		for(i = 0; i < n; i++)
+		{
+			printf(" ");
+			if(i == index)
+			{
+				long long int x = p / a[i];
+				x++;
+				printf("%lld", x);
+			}
+			else
+				printf("%lld", land);
+		}
+	}
+	printf("\n");
+}

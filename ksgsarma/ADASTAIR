@@ -1,0 +1,43 @@
+#include <stdio.h>
+void func();
+int main() 
+{
+	int t; 
+	scanf("%d", &t);
+	while(t > 0)
+	{
+		func();
+		t--;
+	}
+	return 0;
+}
+void func()
+{
+	int n, k, h[1000], i, a = 0, b, count = 0, r;
+	scanf("%d", &n);
+	scanf("%d", &k);
+	for(i = 0; i < n; i++)
+		scanf("%d", &h[i]);
+	for(i = 0; i < n; i++)
+	{
+		b = h[i] - a;
+		a = h[i];
+		if(b > k)
+		{
+			if(k == 1)
+			{
+				count = count + b - 1;
+			}
+			else
+			{
+			r = b % k;
+			b = b / k;
+			if(r == 0)
+				count--;
+			count = count + b;
+			}
+		}
+	}
+	printf("%d\n", count);
+}
+

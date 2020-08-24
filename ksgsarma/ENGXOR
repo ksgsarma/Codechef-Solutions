@@ -1,0 +1,43 @@
+#include <iostream>
+#include <stdio.h>
+using namespace std;
+#include <bits/stdc++.h>
+#include <malloc.h>
+
+int main() {
+	
+	ios_base::sync_with_stdio(false); 
+    cin.tie(NULL);    
+	int t;
+	cin >> t;
+	while(t > 0)
+	{
+		int n, q, *a, i, even_count, odd_count, la, count = 0;
+		cin >> n >> q;
+		a = (int *)malloc(n * sizeof(int));
+		for(i = 0; i < n; i++)
+		{
+			cin >> a[i];
+			a[i] = __builtin_popcount(a[i]) % 2;
+			if(a[i] == 1)
+				count++;
+		}
+		while(q > 0)
+		{
+			even_count = 0;
+			odd_count = 0;
+			cin >> la;
+			la = __builtin_popcount(la) % 2;
+			if(la == 1)
+				even_count = count;
+			else
+				even_count = n - count;
+			odd_count = n - even_count;
+			cout << even_count  << ' '<< odd_count << '\n';
+			q--;
+		}
+		t--;
+	}
+	return 0;
+}
+

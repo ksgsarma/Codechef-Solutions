@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <malloc.h>
+void func();
+int main()
+{
+	int t;
+	scanf("%d",&t);
+	while(t > 0)
+	{
+		func();
+		t--;
+	}
+	return 0;
+}
+void func()
+{
+	long long int i, j , n, *a, *d, count = 0;
+	scanf("%lld", &n);
+	a = (long long int * )malloc(sizeof(long long int ) * n);
+	d = (long long int * )malloc(sizeof(long long int ) * n);
+	for(i = 0; i < n; i++)
+	{
+		scanf("%lld", &a[i]);
+		if(a[i] < 0)
+			a[i] = -a[i];
+		if(a[i]% 4 == 2)
+			d[i] = 1;
+	}
+	for(i = 0; i < n; i++)
+	{
+		if(d[i] == 1)
+		{
+			j = i - 1;
+			long long int lala = 1;
+			while((j >= 0) && ((a[j] % 2 ) != 0))
+			{
+				j--;
+				lala++;
+			}
+			count += lala;
+			j = i + 1;
+			while((j < n) && ((a[j] % 2) != 0))
+			{
+				j++;
+				count += lala;
+			}
+		}
+	}
+	n = (n * (n + 1)) / 2 - count;
+	printf("%lld\n", n);
+}

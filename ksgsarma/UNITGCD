@@ -1,0 +1,47 @@
+#include <stdio.h>
+void func();
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while(t > 0)
+	{
+		func();
+		t--;
+	}
+	return 0;
+}
+void func()
+{
+	long long int n, i, k;
+	scanf("%lld", &n);
+	if(n <= 3)
+	{
+		printf("1\n");
+		printf("%lld ", n);
+		for(i = 1; i <= n; i++)
+			printf("%lld ", i);
+		printf("\n");
+	}
+	else
+	{
+		k = n / 2;
+		i = 4;
+		printf("%lld\n", k);
+		if(n % 2 == 1)
+			printf("3 1 2 3\n");
+		else
+		{
+			printf("2 1 2\n");
+			i--;
+		}
+		k--;
+		while(k > 0)
+		{
+			printf("2 %lld %lld\n", i, i + 1);
+			k--;
+			i += 2;
+		}
+	}
+	
+}

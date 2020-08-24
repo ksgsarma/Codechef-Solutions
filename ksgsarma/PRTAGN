@@ -1,0 +1,36 @@
+a = int(input())
+while a > 0:
+    c_even = 0
+    c_odd = 0
+    s = set()
+    l = set()
+    b = int(input())
+    while b > 0:
+        flag = 0
+        c = int(input())
+        if c not in s:
+            s.add(c)
+            p = bin(c)
+            m = p.count('1')
+            if m % 2 == 0:
+                c_even = c_even + 1
+            else:
+                c_odd = c_odd + 1
+            for i in s:
+                x = c ^ i
+                if x not in s and x != 0:
+                    p = bin(x)
+                    m = p.count('1')
+                    if m % 2 == 0:
+                        c_even = c_even + 1
+                    else:
+                        c_odd = c_odd + 1
+                    l.add(x)
+            for i in l:
+                s.add(i)
+        print (c_even, c_odd)
+        b = b - 1
+    a = a - 1
+
+
+			

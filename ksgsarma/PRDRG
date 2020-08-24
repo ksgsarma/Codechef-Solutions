@@ -1,0 +1,23 @@
+#include <stdio.h>
+#include <math.h>
+void func();
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while(t > 0)
+	{
+		func();
+		t--;
+	}
+	return 0;
+}
+void func()
+{
+	long long int n, y, x = 1, i;
+	scanf("%lld", &n);
+	y = pow(2, n);
+	for(i = 1; i < n; i++)
+		x = pow(2, i) - x;
+	printf("%lld %lld ", x, y);
+}

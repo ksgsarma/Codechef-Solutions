@@ -1,0 +1,36 @@
+from collections import Counter
+t = int(input())
+while t > 0:
+	n = int(input())
+	l = list(map(int, input().split()))
+	l.sort()
+	x = Counter(l)
+	flag = 1
+	for i in x.values():
+		if i > 2:
+			flag = 0
+	if flag == 0:
+		print("NO")
+	else:
+		la = []
+		ha = []
+		for i, j in x.items():
+			if j == 1:
+				la.append(i)
+			else:
+				la.append(i)
+				ha.append(i)
+		ha = ha[::-1]
+		flag = 0
+		for i in ha:
+			if flag == 0:
+				if la[len(la) - 1] == i:
+					flag = 1
+					break
+			la.append(i)
+		if flag == 1:
+			print("NO")
+		else:
+			print("YES")
+			print(*la)
+	t -= 1

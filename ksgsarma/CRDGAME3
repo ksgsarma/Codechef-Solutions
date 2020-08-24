@@ -1,0 +1,16 @@
+t = int(input())
+while t > 0:
+	n, m = map(int, input().split())
+	a = n // 9
+	b = m // 9
+	if n % 9 != 0:
+		a += 1
+	if m % 9 != 0:
+		b += 1
+	if b > a:
+		print(0, end = " ")
+		print(a)
+	else:
+		print(1, end = " ")
+		print(b)
+	t -= 1

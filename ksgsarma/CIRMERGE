@@ -1,0 +1,36 @@
+t = int(input())
+while t > 0:
+    n = int(input())
+    str  = input()
+    a = list(map(int, str.split()))
+    b = list(map(int, str.split()))
+    pen = []
+    b.sort()
+    while len(a) > 1:
+        p = min(a)
+        i = a.index(p)
+        j = i - 1
+        k = i + 1
+        if(i == 0):
+        	j = len(a) - 1
+        if(i == len(a) - 1):
+        	k = 0
+        if(a[j] < a[k]):
+            count = p + a[j]
+            del a[i]
+            a.insert(i, count) 
+            del a[j]
+            pen.append(count)
+        else:
+            count = p + a[k]
+            del a[i]
+            a.insert(i, count) 
+            del a[k]
+            pen.append(count)
+    count = 0
+    for i in pen:
+        count = count + i
+    print(count)
+    t = t - 1
+
+			

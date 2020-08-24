@@ -1,0 +1,69 @@
+#include <iostream>
+using namespace std;
+#define pd pair<long double, long double>
+void func();
+bool intersect( pd p1, pd  q1,pd  p2, pd q2)
+{
+	if(p1 == q2 || p2 == q1)
+		return false;
+		
+	long double a1 = q1.second - p1.second; 
+    long double b1 = p1.first - q1.first; 
+    long double c1 = a1*(p1.first) + b1*(p1.second); 
+    long double a2 = q2.second - p2.second; 
+    long double b2 = p2.first - q2.first; 
+    long double c2 = a2*(p2.first)+ b2*(p2.second); 
+    long double det = a1*b2 - a2*b1;
+   
+    if(det == 0)
+    	return false;
+    else
+    {
+    	double x = (b2*c1 - b1*c2) / det; 
+        double y = (a1*c2 - a2*c1) / det; 
+        // cout  << x << ' ' <<  y << '\n';
+        // cout  << p1.first << ' ' <<  q1.first << '\n';
+        // cout  << p1.second << ' ' <<  q1.second << '\n';
+        // cout  << p2.first << ' ' <<  q2.first << '\n';
+        // cout  << p2.second << ' ' <<  q2.second << '\n';
+		double y1 = (min(p1.second, q1.second));
+		double y3 = (min(p2.second, q2.second));
+		double y2 = (max(p1.second, q1.second));
+		double y4 = (max(p2.second, q2.second));
+
+        if(x >= p1.first && x<= q1.first && x >= p2.first && x <= q2.first)
+        	if(y >= y1 && y<= y2 && y >= y3 && y <= y4)
+    			return true;
+    	return false;
+    }
+}
+int main() {
+	
+	ios_base::sync_with_stdio(false); 
+    cin.tie(NULL);   
+    long long int t;
+    cin >> t;
+    while(t > 0)
+    {
+    	func();
+    	t--;
+    }
+	return 0;
+}
+void func()
+{
+	long long int n, q, a[1000000], i;
+	cin >> n >> q;
+	for(i = 0; i < n; i++)
+		cin >> a[i];
+	while(q > 0)
+	{
+		long long int x1, x2, y, count = 0;
+		cin >> x1 >> x2 >> y;
+		for(i = 0; i < n - 1; i++)
+			if(intersect(make_pair(i + 1, a[i]), make_pair(i + 2, a[i + 1]), make_pair(x1, y), make_pair(x2, y)))
+				count++;
+		cout << count << '\n';
+		q--;
+	}
+}

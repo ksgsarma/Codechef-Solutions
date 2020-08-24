@@ -1,0 +1,43 @@
+#include <stdio.h>
+void func();
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while(t > 0)
+	{
+		func();
+		t--;
+	}
+	return 0;
+}
+void func()
+{
+	long long int n, a[100001], i, sum = 0, flag, f;
+	scanf("%lld", &n);
+	for(i = 0; i < n; i++)
+	{
+		scanf("%lld", &a[i]);
+		sum = sum + a[i];
+	}
+	if(sum % n != 0)
+		flag = -1;
+	else
+	{
+		f = sum / n;
+	}
+	for(i = 0; i < n; i++)
+	{
+		if(f == a[i])
+		{
+			flag = i;
+			break;
+		}
+	}
+	if(flag == -1)
+		printf("Impossible\n");
+	else
+	{
+		printf("%lld\n", flag + 1);
+	}
+}

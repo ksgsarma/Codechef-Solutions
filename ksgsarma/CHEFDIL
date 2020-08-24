@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include <string.h>
+void func();
+int main()
+{
+	int t;
+	scanf("%d\n", &t);
+	while(t > 0)
+	{
+		func();
+		t--;
+	}
+	return 0;
+}
+void func()
+{
+	char s[100000];
+	int i, count = 0;
+	scanf("%s\n", s);
+	for(i = 0; i < strlen(s); i++)
+	{
+		if(s[i] == '1')
+			count++;
+	}
+	if(count % 2 != 0)
+		printf("WIN\n");
+	else
+		printf("LOSE\n");
+}

@@ -1,0 +1,77 @@
+#include <stdio.h>
+#include <stdlib.h>
+long int cmpfunc (const void * a, const void * b) {
+   return ( *(long int*)a - *(long int*)b );
+}
+long int func();
+int main() {
+	long int t, sum = 0;
+	scanf("%ld", &t);
+	while(t > 0)
+	{
+		sum += func();
+		t--;
+	}
+	printf("%ld\n", sum);
+	return 0;
+}
+long int func()
+{
+	long int max = -500, i, j, k, l, a[4][4] = {0}, n, t, x[4] = {0}, go = 0;
+	char ch;
+	scanf("%ld\n", &n);
+	while(n > 0)
+	{
+		scanf("%c %ld\n", &ch, &t);
+		int x = ch - 'A';
+		//printf("%d\n", x);
+		t = t / 3;
+		t--;
+		a[x][t]++;
+		n--;
+	}
+	// for(i = 0; i < 4; i++)
+	// {
+	// 	for(j = 0; j < 4; j++)
+	// 	{
+	// 		printf("%d	", a[i][j]);
+	// 	}
+	// 	printf("\n");
+	// }
+	for(i = 0; i < 4; i++)
+	{
+		for(j = 0; j < 4; j++)
+		{
+			for(k = 0 ; k < 4 ; k++)
+			{
+				for(l = 0;  l < 4; l++)
+				{
+					if(i != j && i!= k && i!= l && j != k && j != l && l != k)
+					{
+
+							x[0] = a[i][0];
+							x[1] = a[j][1];
+							x[2] = a[k][2];
+							x[3] = a[l][3];
+							qsort(x, 4, sizeof(long int), cmpfunc);
+							long int lala = 0, xmax = 0;
+                        	for(int o = 0; o < 4; o++)
+                        	{
+                        	    //printf("%d ", x[o]);
+                        		lala = lala + 25;
+	                        	if(x[o] != 0)
+	                        		xmax += x[o] * lala;
+                        		else
+	                        		xmax -= 100;
+	                        }
+	                        //printf("\n");
+                            if(xmax > max)
+                                max = xmax;
+					}
+				}
+			}
+		}
+	}
+	printf("%ld\n", max);
+	return max;
+}

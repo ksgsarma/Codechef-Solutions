@@ -1,0 +1,135 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define LL long long int
+const LL M=1e9+7;
+
+LL xxx[100002], yyy[100002];
+
+void dfs(LL x, LL y, vector<LL>a[])
+{
+    if(x==y) return;
+    xxx[x] = true;
+    for(auto it: a[x])
+    {
+        if(xxx[it] == false)
+        {
+            xxx[it] = true;
+            yyy[it] = x;
+            dfs(it,y,a);
+        }
+    }
+}
+
+void finding_primes(LL n, vector<LL>& primes)
+{
+    bool prime[n+1]; 
+    memset(prime, true, sizeof(prime)); 
+  
+    for(LL p=2; p*p<=n; p++) 
+    {  
+        if(prime[p] == true) 
+        {  
+            for(LL i=p*p; i<=n; i += p) 
+                prime[i] = false; 
+        } 
+        if(prime[p]) 
+          primes.push_back(p);
+    } 
+
+      
+}
+
+void solution(vector<LL>arr)
+{
+
+    LL maxi=*max_element(arr.begin(),arr.end());
+    vector<LL>haha;
+    finding_primes(maxi, haha);
+    unordered_map<LL,LL>noddy;
+    for(LL i=0 ;i<arr.size();i++)
+    {
+        for(LL j=0;j<haha.size();j++)
+        {
+            LL count=0;
+            while(arr[i]>1 && arr[i]%haha[j]==0)
+            {
+                arr[i]=arr[i]/haha[j];
+                count++;
+            }
+            noddy[haha[j]]+=count;
+        }
+        if(arr[i]!=1)
+        {
+            noddy[arr[i]]++;
+        }
+    }
+    LL ans=1;
+
+    for (auto it : noddy) 
+        ans = ((ans%M)*((it.second + 1L)%M))%M; 
+  
+    cout << ans << endl;
+
+}
+void func()
+{
+    LL n, u, v;
+    cin >> n;
+    vector<LL>a[n+1];
+    for(LL i=0;i<n - 1;i++)
+    {
+        cin >> u >> v;
+        a[u].push_back(v);
+        a[v].push_back(u);
+    }
+    LL l[n+1];
+    for(LL i=1;i<=n;i++)
+        cin >> l[i];
+    LL q;
+    cin >> q;
+    while(q > 0)
+    {
+        for(LL g=0;g<=n;g++) xxx[g] = false, yyy[g] = -1;
+
+        cin >> u >> v;
+        vector<LL>lala;
+        dfs(u, v, a);
+        LL x=v;
+        while(yyy[x]!=-1)
+        {
+            lala.push_back(x);
+            x=yyy[x];
+        }
+        lala.push_back(x);
+
+        vector<LL>::iterator it,jt;
+        it=find(lala.begin(),lala.end(),u);
+        jt=find(lala.begin(),lala.end(),v);
+        
+
+        LL i=min(it-lala.begin(),jt-lala.begin());
+        LL j=max(it-lala.begin(),jt-lala.begin());
+        
+
+        vector<LL>abcd;
+        for(LL x=i;x<=j;x++)
+        {
+            abcd.push_back(l[lala[x]]);
+        }
+        solution(abcd);
+        q--;
+    }
+}
+int main() {
+    int t;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+ 
+    cin >> t;
+    while(t > 0)
+    {
+        func();
+        t--;
+    }
+    return 0;
+}

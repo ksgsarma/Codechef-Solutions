@@ -1,0 +1,67 @@
+#include <stdio.h>
+void func();
+int main()
+{
+func();
+return 0;
+}
+void func()
+{
+  long long int n, m, a[200001], b[200001], i, j, sum, count , temp[400001], k, p;
+  scanf("%lld", &n);
+  scanf("%lld", &m);
+  for(i = 0; i < n; i++)
+    scanf("%lld", &a[i]);
+  for(j = 0; j < m; j++)
+    scanf("%lld", &b[j]);
+  if(m > n)
+  {
+    p = n - 1;
+    for(j = 0; j < m; j++)
+    {
+      temp[j] = a[0] + b[j];
+      printf("0 %lld\n", j);
+    }
+    count = m;
+  for(i = 1; i < n && p > 0; i++)
+    for(j = 0; j < m && p > 0; j++)
+    {
+      sum = a[i] + b[j];
+      	k = 0;
+        while(k < count  && sum != temp[k])
+        	k++;
+          if(k == count && p > 0)
+          {
+            temp[k] = sum;
+            count++;
+            printf("%lld %lld\n", i, j);
+            p--;
+          }
+    }
+  }
+  else
+  {
+    p = m - 1;
+    for(i = 0; i < n; i++)
+    {
+      temp[i] = a[i] + b[0];
+      printf("%lld 0\n", i);
+    }
+    count = n;
+    for(j = 1; j < m && p > 0; j++)
+      for(i = 0; i < n && p > 0; i++)
+    {
+      sum = a[i] + b[j];
+      	k = 0;
+        while(k < count  && sum != temp[k])
+        	k++;
+          if(k == count && p > 0)
+          {
+            temp[k] = sum;
+            count++;
+            printf("%lld %lld\n", i, j);
+            p--;
+          }
+    }
+  }
+}

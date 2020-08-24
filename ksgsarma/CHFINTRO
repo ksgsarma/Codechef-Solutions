@@ -1,0 +1,18 @@
+#include <stdio.h>
+int main()
+{
+	int n, r, x;
+	scanf("%d", &n);
+	scanf("%d", &r);
+	while(n > 0)
+	{
+		scanf("%d", &x);
+		if(x >= r)
+			printf("Good boi\n");
+		else
+			printf("Bad boi\n");
+		n--;
+	}
+	return 0;
+}
+

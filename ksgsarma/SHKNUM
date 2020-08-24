@@ -1,0 +1,87 @@
+#include <stdio.h>
+#include <math.h>
+void func();
+int main()
+{
+    long long int noOfCases;
+    scanf("%Ld", &noOfCases);
+    while(noOfCases>0)
+    {
+        func();
+        noOfCases--;
+    }
+    return 0;
+}
+void func()
+{
+    long long int a,b,c,d,e,f,x,y,k,m = 1;
+    scanf("%Ld", &a);
+    x = 0;
+    y = 0;
+    b = 2;
+    c = 2;
+    d = 0;
+    while(d <= a)
+    {
+        d = pow(b,x) + pow(c,y);
+        y++;
+        x++;
+    }
+    e = d/2;
+    k = e;
+    b = e;
+    _12:
+    f = b + k/2;
+    if(a >= f)
+     e = f;
+    else
+    {
+     d = f; 
+     k = k/2;
+     goto _12;
+    }
+    c = a;
+    x = 0;
+    while(c>1)
+    {
+      m = c%2;
+      c = c/2;
+      if(m == 1)
+        break;
+    }
+    c = a;
+     while(c>0)
+    {
+      c = c/2;
+      x++;
+    }
+    if(a == 2)
+      printf("1\n");
+    else if(m == 0 && x%2 == 1)
+      printf("1\n");
+    else if(a == 1)
+      printf("2\n");
+    else
+    { 
+      d = d - a;
+      e = a - e; 
+      if(d > e)
+        printf("%Ld\n",e);
+      else
+      {
+        a = a + d;
+        c = a;
+        while(c>1)
+        {
+         m = c%2;
+         c = c/2;
+         if(m == 1)
+          break;
+        }
+        if(m == 1)
+         printf("%Ld\n",d); 
+        else
+         printf("%Ld\n", d+1);
+      }  
+    } 
+}

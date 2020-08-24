@@ -1,0 +1,25 @@
+#include <stdio.h>
+void func();
+int main()
+{
+	int t;
+	scanf("%d", &t);
+	while(t > 0)
+	{
+		func();
+		t--;
+	}
+	return 0;
+}
+void func()
+{
+	long long int n, k, s;
+	scanf("%lld", &n);
+	scanf("%lld", &k);
+	s = n / k;
+	s = s % k;
+	if(s == 0)
+		printf("NO\n");
+	else
+		printf("YES\n");
+}

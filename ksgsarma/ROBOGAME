@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <string.h>
+void func();
+int main() {
+	int t;
+	scanf("%d", &t);
+	while(t > 0)
+	{
+		func();
+		t--;
+	}
+	// your code goes here
+	return 0;
+}
+void func()
+{
+	int i, flag = 1, j, x, u, p;
+	char s[30000];
+	scanf("%s\n", s);
+	for(i = 0; i < strlen(s); i++)
+	{
+		u = s[i] - 48;
+		if(u >= 0 & u < 10)
+		{
+			x = s[i] - 48;
+			j = i - x;
+			if(j < 0)
+				j = 0;
+			p = i + x;
+			if(p > strlen(s) - 1)
+				p = strlen(s) - 1;
+			for(j; j <= p; j++)
+			{
+				//printf("%d %d %c\n",i, j, s[j - 1]);
+				if(s[j] == '.')
+					s[j] = 'X';
+				else if(i == j)
+				{
+					continue;
+				}
+				else
+				{
+					flag = 0;
+					goto l;
+				}
+			}
+		}
+	}
+	if(flag == 1)
+	{
+		printf("safe\n");
+	}
+	else
+	{
+		l:
+		printf("unsafe\n");
+	}
+}

@@ -1,0 +1,27 @@
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+import java.util.*;
+class main {
+  public static void main(String[] args) 
+  {
+    Scanner s = new Scanner(System.in);
+    String t = s.nextLine();
+    int p = Integer.parseInt(t);
+    while(p > 0)
+    {
+    	int flag = 0;
+      String a = s.nextLine();
+		StringTokenizer st1 = 
+			new StringTokenizer(a, " "); 
+		while (st1.hasMoreTokens()) 
+		if ((st1.nextToken()).matches(".*\\bnot\\b.*")) 
+			flag = 1;
+		if(flag == 1)
+			System.out.println("Real Fancy"); 
+		else
+			System.out.println("regularly fancy"); 
+      p--;
+    }
+  }
+}

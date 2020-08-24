@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void func();
+
+int main()
+{
+  int t;
+  scanf("%d", &t);
+  while(t > 0)
+  {
+    func();
+    t--;
+  }
+  return 0;
+}
+void func()
+{
+  long long int n = 6, i, m, sum = 0, count = 0;
+  char  * s , a, b;
+  scanf("%lld", &n);
+  s = (char *)malloc((n + 2) * sizeof(char));
+  scanf("%s", s);
+  scanf("%c", &b);
+  scanf("%c", &a);
+  m = (n) * (n + 1);
+  m = m / 2;
+  //printf("%s\n", s);
+  for(i = 0; i < n; i++)
+  {
+    if(s[i] != a)
+      count++;
+    if(s[i] == a) 
+    {
+      sum = sum + ((count) * (count + 1)) / 2;
+      count = 0;
+    }
+  }
+  if(count != 0)
+	m = m - ((count) * (count + 1)) / 2;
+  m = m - sum;
+  //printf("%d\n", count);
+  printf("%lld\n", m);
+}

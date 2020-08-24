@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include <string.h>
+void func();
+int main()
+{
+int numberofcases;
+   scanf("%d", &numberofcases);
+   while( numberofcases > 0 )
+   {
+      func();
+      numberofcases--;
+   }
+}
+void func()
+{
+  int b, i = 0, c, d = 0;
+  char a[100], x; 
+  scanf("%d", &b);
+  scanf("%s", a);
+  while(i<b)
+  {
+   a[i] = 219 - a[i];
+   i++;
+  }
+ while(d<(b-1))
+ {
+   x = a[d];
+   a[d] = a[d+1];
+   a[d+1] = x;
+   d = d +2;
+ }
+ c = strlen(a);
+//  printf("%d", c);
+ puts(a);
+}
